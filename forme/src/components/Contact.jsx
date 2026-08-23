@@ -31,25 +31,39 @@ export default function Contact() {
             something <br />
             <span className="italic-serif">meaningful.</span>
           </h2>
-          <a 
-            href="mailto:hello@forme.studio" 
-            className="text-2xl md:text-3xl hover:opacity-70 transition-opacity"
-            onMouseEnter={() => setCursorState('VIEW')}
-            onMouseLeave={() => setCursorState('DEFAULT')}
-          >
-            hello@forme.studio
-          </a>
+          <div className="flex flex-col space-y-4">
+            <a 
+              href="mailto:rahulinterior07@gmail.com" 
+              className="text-xl md:text-2xl hover:opacity-70 transition-opacity"
+              onMouseEnter={() => setCursorState('VIEW')}
+              onMouseLeave={() => setCursorState('DEFAULT')}
+            >
+              rahulinterior07@gmail.com
+            </a>
+            <a 
+              href="mailto:rahulinteriors1985@gmail.com" 
+              className="text-xl md:text-2xl hover:opacity-70 transition-opacity"
+              onMouseEnter={() => setCursorState('VIEW')}
+              onMouseLeave={() => setCursorState('DEFAULT')}
+            >
+              rahulinteriors1985@gmail.com
+            </a>
+            <p className="text-xl md:text-2xl mt-4">
+              9769612993 | 9870342208 | 7384238713
+            </p>
+            <p className="text-base md:text-lg opacity-80 mt-4 max-w-sm">
+              201, Neelyog Monarch, Pantnagar, Ghatkopar (East), Mumbai - 400075
+            </p>
+          </div>
         </div>
         
         <div className="flex flex-col items-start md:items-end w-full md:w-auto">
           <ul className="flex space-x-6 mb-16 mono text-sm opacity-80">
-            <li><a href="#" className="hover:opacity-100 transition-opacity">Instagram</a></li>
-            <li><a href="#" className="hover:opacity-100 transition-opacity">Pinterest</a></li>
-            <li><a href="#" className="hover:opacity-100 transition-opacity">LinkedIn</a></li>
+            <li><a href="https://instagram.com/rahulinteriorsdesign.hub" target="_blank" rel="noreferrer" className="hover:opacity-100 transition-opacity">Instagram</a></li>
           </ul>
           
           <motion.a
-            href="mailto:hello@forme.studio"
+            href="mailto:rahulinterior07@gmail.com"
             ref={buttonRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}

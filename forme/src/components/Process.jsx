@@ -2,10 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const stages = [
-  { num: '01', title: 'Discover' },
-  { num: '02', title: 'Concept' },
-  { num: '03', title: 'Design' },
-  { num: '04', title: 'Realise' },
+  { num: '01', title: 'Turnkey Execution' },
+  { num: '02', title: 'Commercial Interiors' },
+  { num: '03', title: 'Residential Design' },
+  { num: '04', title: 'Modular Kitchens' },
+  { num: '05', title: 'Civil Repairs' },
 ];
 
 export default function Process() {
@@ -20,8 +21,8 @@ export default function Process() {
             transition={{ duration: 1 }}
             className="text-4xl md:text-5xl lg:text-6xl text-balance leading-tight"
           >
-            From first sketch <br />
-            <span className="italic-serif text-[var(--color-sage)]">to final detail.</span>
+            Services we <br />
+            <span className="italic-serif text-[var(--color-sage)]">provide.</span>
           </motion.h2>
         </div>
 

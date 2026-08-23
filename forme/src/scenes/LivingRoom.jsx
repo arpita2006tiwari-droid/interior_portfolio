@@ -2,7 +2,7 @@ import React, { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-export default function LivingRoom({ mouse }) {
+export default function LivingRoom({ mouse = { x: 0, y: 0 }, active = false }) {
   const group = useRef();
   
   // Custom materials for a stylized, pastel architectural illustration look
@@ -29,16 +29,22 @@ export default function LivingRoom({ mouse }) {
         -1.5 + Math.sin(t) * 0.05,
         0.05
       );
-      group.current.rotation.y = THREE.MathUtils.lerp(
-        group.current.rotation.y,
-        (mouse.x * Math.PI) / 8 + Math.PI / 4, // isometric angle bias
-        0.05
-      );
-      group.current.rotation.x = THREE.MathUtils.lerp(
-        group.current.rotation.x,
-        (mouse.y * Math.PI) / 16,
-        0.05
-      );
+      
+      if (active) {
+        group.current.rotation.y = THREE.MathUtils.lerp(group.current.rotation.y, t * 0.05, 0.05);
+        group.current.rotation.x = THREE.MathUtils.lerp(group.current.rotation.x, 0, 0.05);
+      } else {
+        group.current.rotation.y = THREE.MathUtils.lerp(
+          group.current.rotation.y,
+          (mouse.x * Math.PI) / 8 + Math.PI / 4, 
+          0.05
+        );
+        group.current.rotation.x = THREE.MathUtils.lerp(
+          group.current.rotation.x,
+          (mouse.y * Math.PI) / 16,
+          0.05
+        );
+      }
     }
   });
 
@@ -68,7 +74,6 @@ export default function LivingRoom({ mouse }) {
 
       {/* Architectural Archway Cutout (Left Wall) */}
       <group position={[-3.4, 1.5, 1]}>
-         {/* We fake an archway by placing walls around it */}
          <mesh castShadow receiveShadow position={[0, 1.5, 0]}>
            <boxGeometry args={[0.25, 1, 3]} />
            <primitive object={materials.wall} attach="material" />
@@ -93,7 +98,6 @@ export default function LivingRoom({ mouse }) {
            <planeGeometry args={[3, 2.4]} />
            <primitive object={materials.glass} attach="material" />
         </mesh>
-        {/* Window Mullions */}
         <mesh position={[0, 0, 0.15]} castShadow>
           <boxGeometry args={[0.05, 2.4, 0.05]} />
           <meshStandardMaterial color="#2a2a2a" />
@@ -105,7 +109,7 @@ export default function LivingRoom({ mouse }) {
       </group>
 
       {/* Curved Sofa */}
-      <group position={[0.5, 0.3, 0.5]} rotation={[0, -Math.PI / 8, 0]}>
+      <group position={[0.5, 0.25, 0.5]} rotation={[0, -Math.PI / 8, 0]}>
         {/* Base */}
         <mesh castShadow receiveShadow position={[0, 0, 0]}>
           <cylinderGeometry args={[1.5, 1.5, 0.4, 32, 1, false, 0, Math.PI]} />
@@ -138,44 +142,39 @@ export default function LivingRoom({ mouse }) {
       </mesh>
 
       {/* Coffee Table */}
-      <group position={[0.5, 0.25, 1.5]}>
-        <mesh castShadow receiveShadow>
+      <group position={[0.5, 0.05, 2.0]}>
+        <mesh castShadow receiveShadow position={[0, 0.44, 0]}>
           <cylinderGeometry args={[0.7, 0.7, 0.08, 32]} />
           <primitive object={materials.wood} attach="material" />
         </mesh>
-        {/* Base */}
-        <mesh castShadow receiveShadow position={[0, -0.15, 0]}>
-          <cylinderGeometry args={[0.3, 0.4, 0.3, 32]} />
+        <mesh castShadow receiveShadow position={[0, 0.2, 0]}>
+          <cylinderGeometry args={[0.3, 0.4, 0.4, 32]} />
           <primitive object={materials.wood} attach="material" />
         </mesh>
-        {/* Books on table */}
-        <mesh castShadow receiveShadow position={[-0.2, 0.06, 0]} rotation={[0, 0.2, 0]}>
+        <mesh castShadow receiveShadow position={[-0.2, 0.50, 0]} rotation={[0, 0.2, 0]}>
           <boxGeometry args={[0.4, 0.05, 0.3]} />
           <primitive object={materials.book1} attach="material" />
         </mesh>
-        <mesh castShadow receiveShadow position={[-0.2, 0.12, 0.02]} rotation={[0, -0.1, 0]}>
+        <mesh castShadow receiveShadow position={[-0.2, 0.56, 0.02]} rotation={[0, -0.1, 0]}>
           <boxGeometry args={[0.35, 0.04, 0.25]} />
           <primitive object={materials.book2} attach="material" />
         </mesh>
-        {/* Small vase */}
-        <mesh castShadow receiveShadow position={[0.2, 0.15, -0.1]}>
+        <mesh castShadow receiveShadow position={[0.2, 0.58, -0.1]}>
           <cylinderGeometry args={[0.08, 0.12, 0.2, 16]} />
           <meshStandardMaterial color="#F4EFE7" roughness={0.2} />
         </mesh>
       </group>
 
       {/* Bookshelf / Wall Unit */}
-      <group position={[-2.8, 1.5, -2]}>
+      <group position={[-2.8, 1.55, -2]}>
         <mesh castShadow receiveShadow position={[0, 0, 0]}>
           <boxGeometry args={[1, 3, 2.5]} />
           <primitive object={materials.wood} attach="material" />
         </mesh>
-        {/* Shelves cutout - simulated by adding black backing and shelves */}
         <mesh position={[0.4, 0, 0]} castShadow>
           <boxGeometry args={[0.22, 2.8, 2.3]} />
           <meshStandardMaterial color="#3A2C20" />
         </mesh>
-        {/* Shelf dividers */}
         <mesh castShadow receiveShadow position={[0.5, -0.5, 0]}>
           <boxGeometry args={[0.2, 0.05, 2.3]} />
           <primitive object={materials.wood} attach="material" />
@@ -184,7 +183,6 @@ export default function LivingRoom({ mouse }) {
           <boxGeometry args={[0.2, 0.05, 2.3]} />
           <primitive object={materials.wood} attach="material" />
         </mesh>
-        {/* Books on shelf */}
         <group position={[0.5, 0.65, -0.5]}>
           <mesh castShadow receiveShadow position={[0, 0, 0]}>
              <boxGeometry args={[0.15, 0.25, 0.05]} />
@@ -202,7 +200,7 @@ export default function LivingRoom({ mouse }) {
       </group>
 
       {/* Statement Floor Lamp */}
-      <group position={[-2, 0, 2.5]}>
+      <group position={[-2.4, 0.05, 2.8]}>
         <mesh castShadow receiveShadow position={[0, 1.5, 0]}>
           <cylinderGeometry args={[0.03, 0.06, 3]} />
           <primitive object={materials.brass} attach="material" />
@@ -218,14 +216,12 @@ export default function LivingRoom({ mouse }) {
         <pointLight position={[0, 2.8, 1]} intensity={0.8} distance={5} color="#ffeedd" />
       </group>
       
-      {/* Large Potted Olive Tree (Stylized) */}
-      <group position={[2.5, 0, 2.5]}>
-        {/* Pot */}
+      {/* Large Potted Olive Tree */}
+      <group position={[2.8, 0.05, 2.8]}>
         <mesh castShadow receiveShadow position={[0, 0.3, 0]}>
            <cylinderGeometry args={[0.4, 0.3, 0.6, 32]} />
            <primitive object={materials.wall} attach="material" />
         </mesh>
-        {/* Trunk */}
         <mesh castShadow receiveShadow position={[0, 1, 0]}>
            <cylinderGeometry args={[0.05, 0.08, 1.2]} />
            <primitive object={materials.wood} attach="material" />
@@ -234,7 +230,6 @@ export default function LivingRoom({ mouse }) {
            <cylinderGeometry args={[0.03, 0.05, 0.6]} />
            <primitive object={materials.wood} attach="material" />
         </mesh>
-        {/* Foliage Clusters */}
         <mesh castShadow receiveShadow position={[0, 1.6, 0]}>
            <sphereGeometry args={[0.6, 16, 16]} />
            <primitive object={materials.plantGreen} attach="material" />
@@ -259,7 +254,6 @@ export default function LivingRoom({ mouse }) {
           <planeGeometry args={[1.3, 1.8]} />
           <meshStandardMaterial color="#E9E1D4" />
         </mesh>
-        {/* Abstract shape on canvas */}
         <mesh position={[0, 0, 0.04]}>
           <circleGeometry args={[0.4, 32]} />
           <primitive object={materials.fabricTerracotta} attach="material" />

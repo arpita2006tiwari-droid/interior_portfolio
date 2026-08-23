@@ -33,7 +33,7 @@ export default function LoadingScreen({ onComplete }) {
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[var(--color-dark)] text-[var(--color-primary)]"
         >
           <div className="flex flex-col items-center">
-            <h1 className="text-4xl md:text-5xl mb-4 tracking-wide font-light">FORMÉ</h1>
+            <h1 className="text-4xl md:text-5xl mb-4 tracking-wide font-light">RAHUL</h1>
             <p className="mono text-xs md:text-sm text-[var(--color-beige)] opacity-80 mb-12">
               Interior Architecture Studio
             </p>

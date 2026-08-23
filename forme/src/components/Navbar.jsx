@@ -28,7 +28,7 @@ export default function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 1 }}
       >
-        <div className="text-2xl tracking-widest font-light z-50">FORMÉ</div>
+        <div className="text-2xl tracking-widest font-light z-50">Rahul Interiors</div>
         
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-12">

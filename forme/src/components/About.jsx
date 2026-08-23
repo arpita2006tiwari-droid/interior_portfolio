@@ -60,11 +60,11 @@ export default function About() {
             }}
             className="text-5xl md:text-7xl leading-tight text-balance mb-8"
           >
-            We don't decorate <br />
-            <span className="italic-serif text-[var(--color-sage)]">spaces.</span>
+            We are a <br />
+            <span className="italic-serif text-[var(--color-sage)]">team</span>
             <br />
-            We shape <br />
-            <span className="italic-serif text-[var(--color-terracotta)]">experiences.</span>
+            united by <br />
+            <span className="italic-serif text-[var(--color-terracotta)]">design.</span>
           </motion.h2>
         </div>
 
@@ -80,16 +80,16 @@ export default function About() {
             }}
           >
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-              <Stat num="42" label="PROJECTS" />
+              <Stat num="100" label="PROJECTS" />
             </motion.div>
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-              <Stat num="08" label="YEARS" />
+              <Stat num="35" label="YEARS" />
             </motion.div>
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-              <Stat num="12" label="CITIES" />
+              <Stat num="3" label="CITIES" />
             </motion.div>
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-              <Stat num="06" label="DESIGN AWARDS" />
+              <Stat num="12" label="AWARDS" />
             </motion.div>
           </motion.div>
         </div>

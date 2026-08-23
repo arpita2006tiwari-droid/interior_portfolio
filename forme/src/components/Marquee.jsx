@@ -1,7 +1,7 @@
 import React from 'react';
 
-const materials = [
-  'Natural Stone', 'Walnut', 'Limewash', 'Brushed Brass', 'Belgian Linen', 'Handcrafted Details'
+const services = [
+  'Conceptual Design', 'Turnkey Execution', 'Civil Repairs', 'Modular Kitchens', 'Home Painting', 'Commercial & Corporate'
 ];
 
 export default function Marquee() {
@@ -11,10 +11,10 @@ export default function Marquee() {
         {/* We duplicate the content to make it infinite */}
         {[...Array(4)].map((_, i) => (
           <div key={i} className="flex items-center shrink-0 group-hover:[animation-play-state:paused]">
-            {materials.map((mat, idx) => (
+            {services.map((svc, idx) => (
               <React.Fragment key={idx}>
                 <span className="text-3xl md:text-5xl font-light mx-8 opacity-80 hover:opacity-100 transition-opacity">
-                  {mat}
+                  {svc}
                 </span>
                 <span className="text-[var(--color-gold)] text-xl md:text-2xl opacity-60">
                   ✦
