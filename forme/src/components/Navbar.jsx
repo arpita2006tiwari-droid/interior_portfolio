@@ -21,14 +21,14 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 flex items-center justify-between px-6 md:px-12 py-6 ${
-          scrolled ? 'bg-[var(--color-background)]/80 backdrop-blur-md border-b border-black/5' : 'bg-transparent'
+        className={`fixed top-0 left-0 w-full z-[110] transition-all duration-500 flex items-center justify-between px-6 md:px-12 py-6 ${
+          scrolled && !mobileMenuOpen ? 'bg-[var(--color-background)]/80 backdrop-blur-md border-b border-black/5' : 'bg-transparent'
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 1 }}
       >
-        <div className="text-2xl tracking-widest font-light z-50">Rahul Interiors</div>
+        <div className={`text-2xl tracking-widest font-light transition-colors duration-500 ${mobileMenuOpen ? 'text-[var(--color-primary)]' : ''}`}>Rahul Interiors</div>
         
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-12">
@@ -61,10 +61,10 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button 
-          className="md:hidden z-50 relative"
+          className="md:hidden z-[120] relative p-2 -mr-2"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
-          {mobileMenuOpen ? <X size={24} color="#f5f0e8" /> : <Menu size={24} />}
+          {mobileMenuOpen ? <X size={28} color="#f5f0e8" /> : <Menu size={28} />}
         </button>
       </motion.nav>
 
@@ -76,7 +76,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: '-100%' }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-40 bg-[var(--color-dark)] text-[var(--color-primary)] flex flex-col justify-center px-12"
+            className="fixed inset-0 z-[105] bg-[var(--color-dark)] text-[var(--color-primary)] flex flex-col justify-center px-12"
           >
             <ul className="flex flex-col space-y-8 text-4xl font-light">
               {navLinks.map((link, index) => (
