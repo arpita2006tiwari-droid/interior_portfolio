@@ -37,23 +37,25 @@ export default function Navbar() {
               <li key={link}>
                 <a 
                   href={`#${link.toLowerCase()}`} 
-                  className="hover:opacity-60 transition-opacity"
+                  className="relative group py-1"
                   onMouseEnter={() => setCursorState('VIEW')}
                   onMouseLeave={() => setCursorState('DEFAULT')}
                 >
-                  {link}
+                  <span className="relative z-10 transition-colors duration-300 group-hover:opacity-70">{link}</span>
+                  <span className="absolute left-0 bottom-0 w-full h-[1px] bg-black origin-left transform scale-x-0 transition-transform duration-300 ease-[0.76,0,0.24,1] group-hover:scale-x-100 z-20"></span>
                 </a>
               </li>
             ))}
           </ul>
           <a
             href="#contact"
-            className="text-xs uppercase tracking-wider mono border border-black/20 px-6 py-3 rounded-full hover:bg-[var(--color-dark)] hover:text-[var(--color-primary)] transition-colors duration-300 flex items-center space-x-2"
+            className="group relative overflow-hidden text-xs uppercase tracking-wider mono border border-black/20 px-6 py-3 rounded-full transition-colors flex items-center space-x-2"
             onMouseEnter={() => setCursorState('VIEW')}
             onMouseLeave={() => setCursorState('DEFAULT')}
           >
-            <span>Start a project</span>
-            <span className="text-[10px]">↗</span>
+            <span className="absolute inset-0 bg-black transform scale-y-0 origin-bottom transition-transform duration-500 ease-[0.16,1,0.3,1] group-hover:scale-y-100"></span>
+            <span className="relative z-10 group-hover:text-[var(--color-primary)] transition-colors duration-500">Start a project</span>
+            <span className="relative z-10 text-[10px] transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500 group-hover:text-[var(--color-primary)]">↗</span>
           </a>
         </div>
 

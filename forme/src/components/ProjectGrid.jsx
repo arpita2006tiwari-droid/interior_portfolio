@@ -1,32 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
 import { projects } from '../data/projects';
-import LivingRoom from '../scenes/LivingRoom';
-import Kitchen from '../scenes/Kitchen';
-import Bathroom from '../scenes/Bathroom';
-import Hall from '../scenes/Hall';
-import WholeHome from '../scenes/WholeHome';
-import DiningRoom from '../scenes/DiningRoom';
 import { useCursor } from '../context/CursorContext';
 import { X } from 'lucide-react';
 
+import imgCasaAurelia from '../assets/projects/casa-aurelia.jpg';
+import imgTheQuietHouse from '../assets/projects/the-quiet-house.jpg';
+import imgAtelier47 from '../assets/projects/atelier-47.jpg';
+import imgOliveKitchen from '../assets/projects/olive-kitchen.jpg';
+import imgTheDiningRoom from '../assets/projects/the-dining-room.jpg';
+import imgStoneAndSteam from '../assets/projects/stone-and-steam.jpg';
+
+const projectImages = {
+  'casa-aurelia': imgCasaAurelia,
+  'the-quiet-house': imgTheQuietHouse,
+  'atelier-47': imgAtelier47,
+  'olive-kitchen': imgOliveKitchen,
+  'the-dining-room': imgTheDiningRoom,
+  'stone-and-steam': imgStoneAndSteam,
+};
+
 export default function ProjectGrid() {
   const [selectedProject, setSelectedProject] = useState(null);
-  const [hoveredProject, setHoveredProject] = useState(null);
   const { setCursorState } = useCursor();
-
-  const getSceneForProject = (id) => {
-    switch (id) {
-      case 'casa-aurelia': return WholeHome;
-      case 'the-quiet-house': return LivingRoom;
-      case 'atelier-47': return Hall;
-      case 'olive-kitchen': return Kitchen;
-      case 'the-dining-room': return DiningRoom;
-      case 'stone-and-steam': return Bathroom;
-      default: return LivingRoom;
-    }
-  };
 
   // Prevent scroll when overlay is open
   useEffect(() => {
@@ -58,11 +54,9 @@ export default function ProjectGrid() {
               layoutId={`project-container-${project.id}`}
               className={`group cursor-none relative flex flex-col ${idx % 2 !== 0 ? 'md:mt-32' : ''}`}
               onMouseEnter={() => {
-                setHoveredProject(project.id);
                 setCursorState('EXPLORE');
               }}
               onMouseLeave={() => {
-                setHoveredProject(null);
                 setCursorState('DEFAULT');
               }}
               onClick={() => {
@@ -75,19 +69,11 @@ export default function ProjectGrid() {
                   layoutId={`project-image-${project.id}`}
                   className="w-full h-full"
                 >
-                  <Canvas shadows camera={{ position: [15, 15, 15], fov: 30 }}>
-                    <ambientLight intensity={0.4} color="#f4efe7" />
-                    <directionalLight 
-                      position={[5, 5, -2]} 
-                      intensity={1.2} 
-                      castShadow 
-                    />
-                    <pointLight position={[-2, 3, 2]} intensity={0.5} color="#e9e1d4" />
-                    {(() => {
-                      const SceneComponent = getSceneForProject(project.id);
-                      return <SceneComponent active={hoveredProject === project.id} />;
-                    })()}
-                  </Canvas>
+                  <motion.img 
+                    src={projectImages[project.id]} 
+                    alt={project.title}
+                    className="w-full h-full object-cover transform transition-transform duration-1000 group-hover:scale-105"
+                  />
                 </motion.div>
               </div>
               
@@ -146,19 +132,11 @@ export default function ProjectGrid() {
                   layoutId={`project-image-${selectedProject.id}`}
                   className="w-full h-[60vh] bg-[var(--color-dark)] relative overflow-hidden mb-16 rounded-sm"
                 >
-                  <Canvas shadows camera={{ position: [15, 15, 15], fov: 30 }}>
-                    <ambientLight intensity={0.4} color="#f4efe7" />
-                    <directionalLight 
-                      position={[5, 5, -2]} 
-                      intensity={1.2} 
-                      castShadow 
-                    />
-                    <pointLight position={[-2, 3, 2]} intensity={0.5} color="#e9e1d4" />
-                    {(() => {
-                      const SceneComponent = getSceneForProject(selectedProject.id);
-                      return <SceneComponent active={true} />;
-                    })()}
-                  </Canvas>
+                  <img 
+                    src={projectImages[selectedProject.id]} 
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover"
+                  />
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12 text-lg">

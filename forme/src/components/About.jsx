@@ -51,21 +51,23 @@ export default function About() {
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between gap-16">
         {/* Left text */}
         <div className="w-full lg:w-1/2" ref={ref}>
-          <motion.h2 
-            initial="hidden"
-            animate={controls}
-            variants={{
-              hidden: { opacity: 0, y: 40 },
-              visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
-            }}
-            className="text-5xl md:text-7xl leading-tight text-balance mb-8"
-          >
-            We are a <br />
-            <span className="italic-serif text-[var(--color-sage)]">team</span>
-            <br />
-            united by <br />
-            <span className="italic-serif text-[var(--color-terracotta)]">design.</span>
-          </motion.h2>
+            <motion.h2 
+              initial="hidden"
+              animate={controls}
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+                }
+              }}
+              className="text-5xl md:text-7xl leading-tight text-balance mb-8"
+            >
+              <div className="overflow-hidden py-1"><motion.div variants={{ hidden: { y: '100%' }, visible: { y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}>We are a</motion.div></div>
+              <div className="overflow-hidden py-1"><motion.div variants={{ hidden: { y: '100%' }, visible: { y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}><span className="italic-serif text-[var(--color-sage)]">team</span></motion.div></div>
+              <div className="overflow-hidden py-1"><motion.div variants={{ hidden: { y: '100%' }, visible: { y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}>united by</motion.div></div>
+              <div className="overflow-hidden py-1"><motion.div variants={{ hidden: { y: '100%' }, visible: { y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}><span className="italic-serif text-[var(--color-terracotta)]">design.</span></motion.div></div>
+            </motion.h2>
         </div>
 
         {/* Right Stats */}
